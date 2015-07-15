@@ -4,24 +4,35 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var clean = require('gulp-clean');
 var jshint = require('gulp-jshint');
+var uglify = require('gulp-uglify');
  
 gulp.task('lint', function() {
-  return gulp.src('./*.js')
+  return gulp.src('js/bundle.js')
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
 
+gulp.task('uglify', ['clean'], function() {
+  return gulp.src('js/bundle.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('js'));
+});
+
  
-gulp.task('delete', function () {
+gulp.task('clean', function () {
     return gulp.src('./js/bundle.js', {read: false})
         .pipe(clean());
 });
 // Add your require statements and gulp tasks here
-
+gulp.task('watch', function () {
+  return gulp.watch(['./js/*.js', '!./js/bundle.js'], ['build'])
+})
 
 
 //
-
+gulp.task('default', ['uglify', 'watch', 'lint', 'serve', 'build'], function() {
+  return gulp.src
+})
 // Browserify
 var source = require('vinyl-source-stream');
 var browserify = require('browserify');
@@ -67,3 +78,4 @@ gulp.task('serve:web', serve({
 }));
 
 gulp.task('serve', ['serve:api', 'serve:web']);
+
