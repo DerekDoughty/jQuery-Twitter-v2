@@ -28,9 +28,9 @@ gulp.task('watch', function () {
   return gulp.watch(['./js/*.js', '!./js/bundle.js'], ['build'])
 })
 
-
-//
-gulp.task('default', ['uglify', 'watch', 'lint', 'serve', 'build'], function() {
+//default should be building, linting and uglify
+//get rid of serve, watch with build..they should not be together. 
+gulp.task('default', ['uglify', 'lint', 'build', 'watch'], function() {
   return gulp.src
 })
 // Browserify
@@ -47,6 +47,7 @@ bundler.transform(hbsfy);
 bundler.on('log', gutil.log); // output build logs to terminal
 
 gulp.task('build', ['clean'], function () {
+  console.log('running build task')
   return bundler.bundle()
     // log errors if they happen
     .on('error', gutil.log.bind(gutil, 'Browserify Error'))
