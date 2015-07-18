@@ -1,19 +1,7 @@
-function renderTweet (user, message) {
-
-		var fields = {
-			user: User,
-			message: message,
-		}
- 
-		return tweetTmpl(fields)
-	}
-
-	module.exports = renderTweet;
-
-	<div class="tweet" id="tweet-{{idTweet}}">
-		<img src="{{img}}">
-		<div class="body">
-			<div class="title">{{user.handle}}</div>
-			<div class="message">{{message}}</div>
-		</div>
-	</div>	
+<div class="tweet" id="tweet-{{idTweet}}">
+	<img src="{{user.img}}">
+	<div class="body">
+		<div class="title">{{user.handle}}</div>
+		<div class="message">{{message}}</div>
+	</div>
+</div>	
